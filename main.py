@@ -1,14 +1,23 @@
 import os
 
 # ostatnio prubowałem wysłać plik .txt na email 
-# poszło średnio bo nie ma neta na kali linx lol 
-#
-#
-#
-#
-#
 
-EMAIL = ''
+settings = {
+    'email_settings':{
+        'sender':'',
+        'reciver':'piotrekzrydek@gmail.com'
+    },
+
+    "user_settings":{
+        'user_name':'maczo',
+        'user_password':'dupa'
+    }
+}
+
+
+
+
+print (settings['email_settings'].get('reciver'))
 
 
 def print_all_MAC_addr():
@@ -28,6 +37,24 @@ def print_wifis_info():
 def send_email():
     pass
 
+def login_function():
+    os.system('clear')
+    login = ""
+    password = ""
+
+    while True:
+        print("Hayy, welcome !!! Type your login and password:")
+        login = input("login: ")
+        password = input("password: ")
+
+        if login == settings['user_settings'].get('user_name') and settings['user_settings'].get('user_password'):
+            break
+
+        else:
+            os.system('clear')
+            print ("Złu login lub hasło")
+            pass
+
 
 
 def main():
@@ -38,8 +65,14 @@ def main():
     
     while True:
 
-        print (f"EMAIL reciver: {EMAIL}")
-        print("Hit your option: \n (1) Print all MAC near routers (AP) \n (2) Scan network \n (3) Scan network and send email")
+        # Lets login
+
+        
+
+        # here is menu of this program
+
+        print (f"EMAIL reciver: ")
+        print("Hit your option: \n (0) Exit \n (1) Print all MAC near routers (AP) \n (2) Scan network \n (3) Scan network and send email \n (4) Set setting (email_reciver, ip_to_scan)")
         anser_1 = input("-->")
 
     
@@ -47,11 +80,21 @@ def main():
             os.system('clear')
             print_all_MAC_addr
 
+        elif anser_1 == "0":
+            os.system('clear')
+            break
+
         elif anser_1=="2":
             os.system('clear')
             print_wifis_info()
 
+
+
+
         else:
             pass
 
+
+
+login_function()
 main()
