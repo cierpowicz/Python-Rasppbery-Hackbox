@@ -28,6 +28,33 @@ def print_all_MAC_addr():
 #
 #
 
+#
+# Simple return sectrion 
+#
+
+
+def return_my_ip_adress():
+    ip_addres = os.system("hostname -I | awk '{print $1}")
+
+    return ip_addres
+
+def return_my_MAC_address():
+    mac_address = os.system('cat /sys/class/net/*/address |head -1')
+
+    return mac_address
+#
+# More advance sectrion 
+#
+
+def print_some_data():
+    ip_addres = return_my_ip_adress()
+    MAC_addres = return_my_MAC_address()
+
+    print(f"IP: {ip_addres} \n MAC: {MAC_addres}")
+
+
+
+
 def print_wifis_info():
 
     command = 'nmcli dev wifi list'
@@ -72,13 +99,13 @@ def main():
         # here is menu of this program
 
         print (f"EMAIL reciver: ")
-        print("Hit your option: \n (0) Exit \n (1) Print all MAC near routers (AP) \n (2) Scan network \n (3) Scan network and send email \n (4) Set setting (email_reciver, ip_to_scan)")
+        print("Hit your option: \n (0) Exit \n (1) Print network info (ip,MAC,mask)")
         anser_1 = input("-->")
 
     
         if anser_1=="1":
             os.system('clear')
-            print_all_MAC_addr
+            print_some_data()
 
         elif anser_1 == "0":
             os.system('clear')
